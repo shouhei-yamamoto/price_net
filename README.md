@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 開発言語
+・ruby 3.0.1
+・rails 6.0.4.7
 
-Things you may want to cover:
+# 就業Termの技術
+・devise
+・Ajaxを使ったコメント機能
 
-* Ruby version
+# カリキュラム外の技術
+・geocoder
 
-* System dependencies
+# 実行手順  
+```
+$ git clone　git@github.com:shouhei-yamamoto/price_net.git  
+$ cd price_net  
+$ bundle install  
+$ rails db:create   
+$ rails db:migrate  
+$ rails s  
+```
 
-* Configuration
+# カタログ設計
+https://docs.google.com/spreadsheets/d/1UF3LbfHOn1XKuyxyrltGbESw6-Tx4ijLGsnAHlIX5fU/edit?usp=sharing
 
-* Database creation
+# テーブル定義書
+https://docs.google.com/spreadsheets/d/1UF3LbfHOn1XKuyxyrltGbESw6-Tx4ijLGsnAHlIX5fU/edit?usp=sharing
 
-* Database initialization
+# ワイヤーフレーム
+https://cacoo.com/diagrams/gHj9m789nqGuPgs2/E3A90
 
-* How to run the test suite
+# ER図  
+![2022-04-08 (1).png](./2022-04-08 (1).png)
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+# 画面遷移図
+![2022-04-08.png](./2022-04-08.png)
