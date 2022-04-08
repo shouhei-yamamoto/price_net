@@ -13,7 +13,7 @@
 
 # 実行手順  
 ```
-$ git clone　git@github.com:shouhei-yamamoto/price_net.git  
+$ git clone https://github.com/shouhei-yamamoto/price_net.git 
 $ cd price_net  
 $ bundle install  
 $ rails db:create   
