@@ -32,9 +32,9 @@ https://cacoo.com/diagrams/gHj9m789nqGuPgs2/E3A90
 
 # ER図  
 https://cacoo.com/diagrams/gHj9m789nqGuPgs2/A06FE
-![ER.png](./ER.png)
+![ER_1.png](./ER_1.png)
 
 
 # 画面遷移図
 https://cacoo.com/diagrams/gHj9m789nqGuPgs2/F5CA5
-![screen.png](./screen.png)
+![screen_1.png](./screen_1.png)
