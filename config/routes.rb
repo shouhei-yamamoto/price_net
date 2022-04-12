@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   resources :photos
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post 'photos/confirm', to: 'photos#confirm'
+  # get '/', to: 'tasks#index'
 end

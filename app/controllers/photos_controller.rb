@@ -12,7 +12,15 @@ class PhotosController < ApplicationController
 
 
   def new
-    @photo = Photo.new
+    if params[:back]
+      @photo = Photo.new(photo_params)
+    else
+      @photo = Photo.new
+    end
+  end
+
+  def confirm
+    @photo = Photo.new(photo_params)
   end
 
 

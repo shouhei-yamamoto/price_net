@@ -13,7 +13,29 @@
 
   <div class="field">
     <%= form.label :image %>
+    <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :値段➀ %>
+    <%= form.text_field :price %>
+  </div>
+
+   <div class="field">
+    <%= form.label :値段➁ %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="content">
+    <%= form.label :'販売店URL➀' %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="content">
+    <%= form.label :'販売店URL➁' %>
+    <%= form.text_field :content %>
   </div>
 
   <div class="actions">
