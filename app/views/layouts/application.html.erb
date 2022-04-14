@@ -25,6 +25,12 @@
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
 
+    <% if current_user.present? %>
+      <p>こんにちは、<%= current_user.name %>さん！</p>
+    <% else %>
+      <p>こんにちは、ゲストさん！</p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
