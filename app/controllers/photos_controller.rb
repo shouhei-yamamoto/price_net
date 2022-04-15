@@ -36,10 +36,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
-    @product = @photo.products.build
-    @product_url = @photo.product_urls.build
     
-
     respond_to do |format|
       # binding.irb
       if @photo.save

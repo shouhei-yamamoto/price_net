@@ -1,4 +1,4 @@
 class ProductUrl < ApplicationRecord
   belongs_to :photo
-  validates :price, presence: true
+  validates :price_url, presence: true
 end
