@@ -9,5 +9,4 @@ class Photo < ApplicationRecord
   has_many :product_urls, dependent: :destroy 
   accepts_nested_attributes_for :products, :product_urls, reject_if: :all_blank, allow_destroy: true
 
-  # validates :price, presence: true
 end

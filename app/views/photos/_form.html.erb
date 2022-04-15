@@ -23,12 +23,17 @@
     <%= f.text_field :content %>
   </div>
 
-  <%= f.fields_for :products do |product| %>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: "住所" %>
+  </div>
+
+   <%= f.fields_for :products do |product| %>
     <p><%= render 'product_fields', f: product %></p>
   <% end %>
 
   <div class = 'link' >
-    <%= link_to_add_association '金額欄追加', f, :products %>
+    <%= link_to_add_association 'add product', f, :products %>
   </div>
 
   <%= f.fields_for :product_urls do |product_url| %>
@@ -37,8 +42,9 @@
 
   
   <div class = 'link' >
-    <%= link_to_add_association 'URL欄追加', f, :product_urls %>
+    <%= link_to_add_association 'add product', f, :product_urls %>
   </div>
+ 
 
   <div class="actions">
     <%= f.submit %>
