@@ -12,6 +12,8 @@ class PhotosController < ApplicationController
 
 
   def new
+    @product = @blog.products.build
+    @product_url = @blog.product_urls.build
     if params[:back]
       @photo = Photo.new(photo_params)
     else
@@ -70,6 +72,8 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:image, :image_cache, :content, :address)
+      params.require(:photo).permit(:image, :image_cache, :content, :address,
+                                    products_attributes: [:id, :price, :_destroy],
+                                    product_urls_attributes: [:id, :price_url, :_destroy])
     end
 end
