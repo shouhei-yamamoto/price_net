@@ -51,5 +51,19 @@
 
 <%#geocodeここまで%>
 
+<p>
+  <% @photo.products.each do |product| %>
+    <strong>値段:</strong>
+    <%= product.price %> 
+  <% end %>
+</p>
+
+<p>
+  <% @photo.product_urls.each do |product_url| %>
+  <strong>商品URL:</strong>
+  <%= product_url.price_url %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

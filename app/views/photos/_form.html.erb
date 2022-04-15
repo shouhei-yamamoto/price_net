@@ -1,4 +1,4 @@
-<%= form_with(model: photo, local: true) do |form| %>
+<%= form_with(model: photo, local: true) do |f| %>
   <% if photo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
@@ -12,23 +12,41 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= f.label :image %>
     <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
   </div>
 
   <div class="content">
-    <%= form.label :'写真説明' %>
-    <%= form.text_field :content %>
+    <%= f.label :'写真説明' %>
+    <%= f.text_field :content %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address, placeholder: "住所" %>
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: "住所" %>
   </div>
 
+   <%= f.fields_for :products do |product| %>
+    <p><%= render 'product_fields', f: product %></p>
+  <% end %>
+
+  <div class = 'link' >
+    <%= link_to_add_association 'add product', f, :products %>
+  </div>
+
+  <%= f.fields_for :product_urls do |product_url| %>
+    <p><%= render 'product_url_fields', f: product_url %></p>
+  <% end %>
+
+  
+  <div class = 'link' >
+    <%= link_to_add_association 'add product', f, :product_urls %>
+  </div>
+ 
+
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

@@ -14,13 +14,19 @@ class PhotosController < ApplicationController
   def new
     if params[:back]
       @photo = Photo.new(photo_params)
+      @product = @photo.products.build
+      @product_url = @photo.product_urls.build
     else
       @photo = Photo.new
+      @product = @photo.products.build
+      @product_url = @photo.product_urls.build
     end
   end
 
   def confirm
     @photo = Photo.new(photo_params)
+    @product = @photo.products.build
+    @product_url = @photo.product_urls.build
   end
 
 
@@ -30,8 +36,9 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
-
+    
     respond_to do |format|
+      # binding.irb
       if @photo.save
         format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
         format.json { render :show, status: :created, location: @photo }
@@ -70,6 +77,8 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:image, :image_cache, :content, :address)
+      params.require(:photo).permit(:image, :image_cache, :content, :address,
+                                    products_attributes: [:id, :price, :_destroy],
+                                    product_urls_attributes: [:id, :price_url, :_destroy])
     end
 end
