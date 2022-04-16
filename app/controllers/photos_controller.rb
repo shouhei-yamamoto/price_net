@@ -77,7 +77,7 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:image, :image_cache, :content, :address,
+      params.require(:photo).permit(:image, :image_cache, :content, :address,  { label_ids: [] },
                                     products_attributes: [:id, :price, :_destroy],
                                     product_urls_attributes: [:id, :price_url, :_destroy])
     end

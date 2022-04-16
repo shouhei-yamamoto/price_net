@@ -18,6 +18,7 @@
         <td><%= photo.content %></td>
         <td><% photo.products.each do |product| %><%= product.price %> <% end %></td>
         <td><% photo.product_urls.each do |product_url| %><%= product_url.price_url %><% end %></td>
+        <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

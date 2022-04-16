@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_072438) do
+ActiveRecord::Schema.define(version: 2022_04_16_032011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "labellings", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.bigint "label_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_labellings_on_label_id"
+    t.index ["photo_id"], name: "index_labellings_on_photo_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "photos", force: :cascade do |t|
     t.text "image"
@@ -65,6 +80,8 @@ ActiveRecord::Schema.define(version: 2022_04_15_072438) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "labellings", "labels"
+  add_foreign_key "labellings", "photos"
   add_foreign_key "product_urls", "photos"
   add_foreign_key "products", "photos"
 end
