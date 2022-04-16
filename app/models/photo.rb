@@ -15,4 +15,7 @@ class Photo < ApplicationRecord
   #ラベルの設定
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
+
+  #ajaxの設定
+  has_many :comments, dependent: :destroy
 end
