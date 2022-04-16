@@ -10,7 +10,8 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <%#photoモデルの記載%>
   <div class="field">
     <%= f.label :image %>
     <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
@@ -22,12 +23,14 @@
     <%= f.label :'写真説明' %>
     <%= f.text_field :content %>
   </div>
-
+  
+  <%#geocoderの記載%>
   <div class="field">
     <%= f.label :address %>
     <%= f.text_field :address, placeholder: "住所" %>
   </div>
-
+  
+  <%#cocoonの記載%>
    <%= f.fields_for :products do |product| %>
     <p><%= render 'product_fields', f: product %></p>
   <% end %>
@@ -43,6 +46,11 @@
   
   <div class = 'link' >
     <%= link_to_add_association 'add product', f, :product_urls %>
+  </div>
+  
+  <%#ラベルの記載%>
+  <div class="field">
+    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
   </div>
  
 
