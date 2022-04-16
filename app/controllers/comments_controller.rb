@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     # Blogをパラメータの値から探し出し,Blogに紐づくcommentsとしてbuildします。
     @photo = Photo.find(params[:photo_id])
     @comment = @photo.comments.build(comment_params)
+    @comment.user_id = current_user.id
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if @comment.save
@@ -46,7 +47,7 @@ class CommentsController < ApplicationController
   private
   # ストロングパラメーター
   def comment_params
-    params.require(:comment).permit(:content, :user_id)
+    params.require(:comment).permit(:content)
   end
 
   def set_photo
