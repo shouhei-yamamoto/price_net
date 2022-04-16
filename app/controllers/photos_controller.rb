@@ -9,6 +9,8 @@ class PhotosController < ApplicationController
 
 
   def show
+    @comments = @photo.comments
+    @comment = @photo.comments.build
   end
 
 
