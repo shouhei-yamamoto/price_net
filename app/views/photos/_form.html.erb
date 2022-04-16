@@ -50,12 +50,7 @@
   
   <%#ラベルの記載%>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
   </div>
  
 
