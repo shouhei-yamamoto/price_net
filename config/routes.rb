@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+
   resources :labels
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  
+  #マイページのルーティング。必ずdevise設定の下に！
+  resources :users, only: [:show, :edit, :update]
 
   resources :photos do
     resources :comments
