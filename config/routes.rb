@@ -7,16 +7,14 @@ Rails.application.routes.draw do
   devise_for :users
   
   #マイページのルーティング。必ずdevise設定の下に！
-
-  get "users/top" => "users#top"
-  root 'users#top'
   resources :users, only: [:show, :edit, :update]
-
+  
+  
   #写真のルーティング
   resources :photos do
     resources :comments
   end
-  # root 'photos#index'
+ 
   post 'photos/confirm', to: 'photos#confirm'
   
   #letter_openerのルーティング
@@ -24,4 +22,8 @@ Rails.application.routes.draw do
   
   #お気に入りのルーティング
   resources :favorites, only: [:create, :destroy, :index]
+
+  #top画面のルーティング
+  get "tops/index" => "tops#index"
+  root 'tops#index'
 end

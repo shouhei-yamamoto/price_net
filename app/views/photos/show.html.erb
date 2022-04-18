@@ -8,6 +8,9 @@
   <%= @photo.content %>
 </p>
 
+<% 
+=begin
+%>
 <% unless @photo.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
@@ -15,6 +18,9 @@
     <%= link_to 'お気に入りする', favorites_path(photo_id: @photo.id), method: :photo, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
+<%
+=end
+%>
 
 <%#ここからgeocode%>
 

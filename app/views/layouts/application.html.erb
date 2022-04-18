@@ -12,6 +12,8 @@
   <body>
     <% if user_signed_in? %>
       <%= link_to "写真投稿", new_photo_path %>
+      <%= link_to "写真一覧", photos_path %>
+      <%= link_to "マイページ",  user_path(current_user.id) %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path %>
