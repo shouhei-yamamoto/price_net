@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
   
+  def top
+  end
+  
   def show
   end
 
