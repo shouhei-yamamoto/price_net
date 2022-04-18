@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   
   def index
     @photos = Photo.all
+    # @photo.user_id = current_user.id
     @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
