@@ -24,6 +24,22 @@
         <td><% photo.products.each do |product| %><%= product.price %> <% end %></td>
         <td><% photo.product_urls.each do |product_url| %><%= product_url.price_url %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
+        
+        <% 
+=begin
+%>
+        <% unless @photo.user_id == current_user.id %>
+          <% if @favorite.present? %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'お気に入りする', favorites_path(photo_id: @photo.id), method: :photo, class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+
+        <%
+=end
+%>
+
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

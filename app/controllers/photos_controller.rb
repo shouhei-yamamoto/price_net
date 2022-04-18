@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   
   def index
     @photos = Photo.all
+    # @photo.user_id = current_user.id
     @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
@@ -11,6 +12,7 @@ class PhotosController < ApplicationController
   def show
     @comments = @photo.comments
     @comment = @photo.comments.build
+    @favorite = current_user.favorites.find_by(photo_id: @photo.id)
   end
 
 
@@ -39,7 +41,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
-    
+    @photo.user_id = current_user.id
     respond_to do |format|
       # binding.irb
       if @photo.save
