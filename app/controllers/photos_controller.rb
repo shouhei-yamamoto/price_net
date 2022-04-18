@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
   def show
     @comments = @photo.comments
     @comment = @photo.comments.build
+    @favorite = current_user.favorites.find_by(photo_id: @photo.id)
   end
 
 
@@ -39,7 +40,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
-    
+    @photo.user_id = current_user.id
     respond_to do |format|
       # binding.irb
       if @photo.save

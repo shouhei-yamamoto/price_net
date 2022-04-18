@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>favorites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= image_tag favorite.photo.image.url %></td>
+        <td><%= favorite.photo.content %></td>
+        <td><%#= favorite.photo.products.each do |products| %><%#= puts products.price %><%# end %></td>
+        <td><%=  %></td>
+
+        <td><%= link_to'詳細', photo_path(favorite.photo.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

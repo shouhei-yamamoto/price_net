@@ -24,4 +24,5 @@ class Photo < ApplicationRecord
 
   #お気に入り設定
   has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
 end

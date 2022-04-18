@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
+  
   def show
   end
 
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :name,  :image, :image_cache)
   end
 end
