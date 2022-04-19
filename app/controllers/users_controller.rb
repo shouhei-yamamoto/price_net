@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   
   
   def show
+    @users = current_user.photos
+    # binding.pry
   end
 
   def edit

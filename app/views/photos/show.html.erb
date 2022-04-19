@@ -61,7 +61,8 @@
 <p>
   <% @photo.product_urls.each do |product_url| %>
   <strong>商品URL:</strong>
-  <%= product_url.price_url %>
+  <%= text_url_to_link(h(product_url.price_url)).html_safe %>
+  <%#= product_url.price_url %>
   <% end %>
 </p>
 
