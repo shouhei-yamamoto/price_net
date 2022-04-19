@@ -10,7 +10,7 @@
     <tr>
       <th>画像</th>
       <th>値段</th>
-      <th>商品URL</th>
+     
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,7 +20,6 @@
       <tr>
         <td><%= image_tag photo.image.url %></td>
         <td><% photo.products.each do |product| %><%= product.price %> <% end %></td>
-        <td><% photo.product_urls.each do |product_url| %><%= product_url.price_url %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         
         <td>
