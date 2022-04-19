@@ -15,8 +15,8 @@
       <tr>
         <td><%= image_tag favorite.photo.image.url %></td>
         <td><%= favorite.photo.content %></td>
-        <td><%#= favorite.photo.products.each do |products| %><%#= puts products.price %><%# end %></td>
-        <td><%=  %></td>
+        <td><% favorite.photo.products.each do |product| %><%= product.price %><% end %></td>
+        
 
         <td><%= link_to'詳細', photo_path(favorite.photo.id) %></td>
       </tr>

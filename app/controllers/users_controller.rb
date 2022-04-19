@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :navi]
+  
+  
   
   def show
+    @users = current_user.photos
+    # binding.pry
   end
 
   def edit

@@ -1,11 +1,44 @@
-<h1>Users#show</h1>
-
-
+<h1>マイページ</h1>
 <p>
-  <strong>Image:</strong>
   <%= image_tag @user.image.url %>
 </p>
+
+<br>
+
+<p>
+  <strong>お名前：</strong>
+  <%= @user.name  %>
+</p>
+
+<br>
+
+<p>
+  <strong>email:</strong>
+  <%= @user.email  %>
+</p>
+
+<% 
+=begin
+%>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= image_tag user.photo.image.url %></td>
+    <td><% user.photo.products.each do |product| %><%= product.price %><% end %></td>
+    <td><% user.photo.labels.each do |label| %><%= label.name %><% end %></td>
+    <td><%= link_to 'Show', photo %></td>
+    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<%
+=end
+%>
+
+
+<br>
 
  <% if user_signed_in? && @user == current_user %>
    <%= link_to "プロフィール編集", edit_user_path(current_user) %>
  <% end %>
+
+<%= link_to 'お気に入り一覧', favorites_path  %>

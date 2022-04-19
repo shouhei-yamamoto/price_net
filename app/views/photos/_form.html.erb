@@ -26,7 +26,7 @@
   
   <%#geocoderの記載%>
   <div class="field">
-    <%= f.label :address %>
+    <%= f.label :住所 %>
     <%= f.text_field :address, placeholder: "住所" %>
   </div>
   
@@ -36,7 +36,7 @@
   <% end %>
 
   <div class = 'link' >
-    <%= link_to_add_association 'add product', f, :products %>
+    <%= link_to_add_association 'フォームを追加する', f, :products %>
   </div>
 
   <%= f.fields_for :product_urls do |product_url| %>
@@ -45,16 +45,19 @@
 
   
   <div class = 'link' >
-    <%= link_to_add_association 'add product', f, :product_urls %>
+    <%= link_to_add_association 'フォームを追加する', f, :product_urls %>
   </div>
   
   <%#ラベルの記載%>
   <div class="field">
     <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
   </div>
- 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '投稿' %>
   </div>
 <% end %>
+
+<div class = 'link' >
+    <%= button_to 'ラベル登録', new_label_path,  method: :get, class: "btn btn-primary" %>
+</div>

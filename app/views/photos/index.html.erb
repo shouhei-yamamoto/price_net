@@ -9,9 +9,8 @@
   <thead>
     <tr>
       <th>画像</th>
-      <th>写真説明</th>
       <th>値段</th>
-      <th>商品URL</th>
+     
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,25 +19,23 @@
     <% @photos.each do |photo| %>
       <tr>
         <td><%= image_tag photo.image.url %></td>
-        <td><%= photo.content %></td>
-        <td><% photo.products.each do |product| %><%= product.price %> <% end %></td>
-        <td><% photo.product_urls.each do |product_url| %><%= product_url.price_url %><% end %></td>
+        <td><% photo.products.each do |product| %><%= product.price %> <%  "円" %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         
-        <% 
-=begin
-%>
-        <% unless @photo.user_id == current_user.id %>
-          <% if @favorite.present? %>
-            <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+        <td>
+        <% unless photo.user_id == current_user.id %>
+        
+          <% if photo.favorite_users.ids.include?(current_user.id) %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
+             ), method: :delete, class: 'btn btn-danger' %>
           <% else %>
-            <%= link_to 'お気に入りする', favorites_path(photo_id: @photo.id), method: :photo, class: 'btn btn-primary' %>
+            <%= link_to 'お気に入りする', favorites_path(photo_id: photo.id), method: :photo, class: 'btn btn-primary' %>
           <% end %>
         <% end %>
+        </td>
+        
 
-        <%
-=end
-%>
+        
 
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
