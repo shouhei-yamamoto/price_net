@@ -292,6 +292,7 @@ DEPENDENCIES
   dotenv-rails
   geocoder
   jbuilder (~> 2.7)
+  kaminari
   letter_opener_web
   listen (~> 3.2)
   mini_magick

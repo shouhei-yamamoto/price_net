@@ -3,12 +3,14 @@ class PhotosController < ApplicationController
 
   
   def index
+    @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
     @photos = Photo.all
     
     # @favorite = current_user.favorites.find_by(photo_id: @photo.id)
     # @photo.user_id = current_user.id
     # binding.irb
-    @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    # @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+    @photos = @photos.page(params[:page]).per(5)
   end
 
 
