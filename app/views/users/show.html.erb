@@ -1,11 +1,26 @@
-<h1>Users#show</h1>
-
-
+<h1>マイページ</h1>
 <p>
-  <strong>Image:</strong>
   <%= image_tag @user.image.url %>
 </p>
+
+<br>
+
+<p>
+  <strong>お名前：</strong>
+  <%= @user.name  %>
+</p>
+
+<br>
+
+<p>
+  <strong>email:</strong>
+  <%= @user.email  %>
+</p>
+
+<br>
 
  <% if user_signed_in? && @user == current_user %>
    <%= link_to "プロフィール編集", edit_user_path(current_user) %>
  <% end %>
+
+  <%= link_to 'お気に入り一覧', favorites_path  %>

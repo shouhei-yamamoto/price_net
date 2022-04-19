@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
   def show
     @comments = @photo.comments
     @comment = @photo.comments.build
-    # @favorite = current_user.favorites.find_by(photo_id: @photo.id)
+    @favorite = current_user.favorites.find_by(photo_id: @photo.id)
   end
 
 
