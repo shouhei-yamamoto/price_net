@@ -3,7 +3,11 @@
   <thead>
     <tr>
       <div class = 'image'>
-        <%= image_tag @user.image.url %>
+        <% if @user.image? %>
+           <%= image_tag @user.image.url %>    
+        <% end %>   
+ 
+        
       </div>
     </tr>
 
@@ -21,8 +25,12 @@
       <%= @user.email  %>
     </tr>
   </thead>
+</table>
 
+<br>
 
+<table>
+<h1>投稿した写真</h1>
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
