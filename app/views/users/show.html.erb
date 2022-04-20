@@ -37,9 +37,9 @@
         <td class = 'image'><%= image_tag photo.image.url %></td>
         <td><% photo.products.each do |product| %><%= product.price %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
-        <td><%#= link_to 'Show', photo %></td>
-        <td><%#= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%#= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', photo %></td>
+        <td><%= link_to '編集', edit_photo_path(photo) %></td>
+        <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
       </tr>
     <% end %>
   </tbody>
