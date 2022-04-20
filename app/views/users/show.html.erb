@@ -27,6 +27,12 @@
   </thead>
 </table>
 
+<% if user_signed_in? && @user == current_user %>
+   <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+ <% end %>
+
+<%= link_to 'お気に入り一覧', favorites_path  %>
+
 <br>
 
 <table>
@@ -38,19 +44,12 @@
         <td><% photo.products.each do |product| %><%= product.price %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         <td><%= link_to '詳細', photo %></td>
-        <td><%= link_to '編集', edit_photo_path(photo) %></td>
-        <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
+
+        <% if current_user.id == photo.user_id %>
+          <td><%= link_to '編集', edit_photo_path(photo) %></td>
+          <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-
-
-<br>
-
- <% if user_signed_in? && @user == current_user %>
-   <%= link_to "プロフィール編集", edit_user_path(current_user) %>
- <% end %>
-
-<%= link_to 'お気に入り一覧', favorites_path  %>

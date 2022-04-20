@@ -33,13 +33,13 @@
           <% end %>
         <% end %>
         </td>
-        
-
-        
 
         <td><%= link_to '詳細', photo %></td>
-        <td><%= link_to '編集', edit_photo_path(photo) %></td>
-        <td><%= link_to '削除', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if current_user.id == photo.user_id %>
+          <td><%= link_to '編集', edit_photo_path(photo) %></td>
+          <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか？' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
