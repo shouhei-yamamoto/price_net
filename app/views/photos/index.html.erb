@@ -18,7 +18,7 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><%= image_tag photo.image.url %></td>
+        <td class = 'image'><%= image_tag photo.image.url %></td>
         <td><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         

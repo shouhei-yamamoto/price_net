@@ -1,33 +1,39 @@
 <h1>マイページ</h1>
-<p>
-  <%= image_tag @user.image.url %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <%= image_tag @user.image.url %>
+    </tr>
 
-<br>
+    <br>
 
-<p>
-  <strong>お名前：</strong>
-  <%= @user.name  %>
-</p>
+    <tr>
+      <strong>お名前：</strong>
+      <%= @user.name  %>
+    </tr>
 
-<br>
+    <br>
 
-<p>
-  <strong>email:</strong>
-  <%= @user.email  %>
-</p>
+    <tr>
+      <strong>email:</strong>
+      <%= @user.email  %>
+    </tr>
+  </thead>
 
 
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%= image_tag photo.image.url %></td>
-    <td><% photo.products.each do |product| %><%= product.price %><% end %></td>
-    <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
-    <td><%#= link_to 'Show', photo %></td>
-    <td><%#= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%#= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td class = 'image'><%= image_tag photo.image.url %></td>
+        <td><% photo.products.each do |product| %><%= product.price %><% end %></td>
+        <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
+        <td><%#= link_to 'Show', photo %></td>
+        <td><%#= link_to 'Edit', edit_photo_path(photo) %></td>
+        <td><%#= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 
