@@ -26,4 +26,7 @@ Rails.application.routes.draw do
   #top画面のルーティング
   get "tops/index" => "tops#index"
   root 'tops#index'
+  
+  post '/tops/guest_sign_in', to: 'tops#guest_sign_in'
+  post '/tops/admin_guest_sign_in', to: 'tops#admin_guest_sign_in'
 end
