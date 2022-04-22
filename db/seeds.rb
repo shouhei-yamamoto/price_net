@@ -23,9 +23,9 @@ end
 @user = User.create!(
   name: "normal",
   email: "normal@example.jp",
-  password: "22222222",
+  password: "11111111",
   admin: "false",
-  confirmed_at: Time.now
+  # confirmed_at: Time.now
   )
 
 # photo完成

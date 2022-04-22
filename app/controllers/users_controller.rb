@@ -6,12 +6,13 @@ class UsersController < ApplicationController
   
   def show
     @photos = @user.photos
-    # @users = .photos
-    # binding.pry
+    unless @user == current_user || current_user.admin == true
+      redirect_to photos_path, notice: '他人のページへアクセスはできません'
+    end
   end
 
   def edit
-    unless @user == current_user
+    unless @user == current_user || current_user.admin == true
       redirect_to user_path(@user)
     end
   end
