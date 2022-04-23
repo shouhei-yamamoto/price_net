@@ -60,48 +60,49 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
       end
     end     
   end
-
-  describe "管理画面のテスト" do
-    context "管理ユーザ作成" do
-      it "管理者は管理画面にアクセスできること" do
-        @admin_user = FactoryBot.create(:admin_user)
-        visit root_path
-        click_on "ユーザーログイン"
-        fill_in "user_email", with: @admin_user.email
-        fill_in "user_password", with: @admin_user.password
-        click_on "ログイン"
-        sleep 0.3
-        click_on "管理画面"
-        expect(current_path).to eq  rails_admin_path
-      end
-    end
   
-    context "管理者でログインしている場合" do
-      before do
-        @admin_user = FactoryBot.create(:admin_user)
-        visit root_path
-        click_on "ユーザーログイン"
-        fill_in "user_email", with: @admin_user.email
-        fill_in "user_password", with: @admin_user.password
-        click_on "ログイン"
-        visit rails_admin_path
-      end
+  # 優先順位高ではないが、卒業後再度テストをするため残しておく。
+  # describe "管理画面のテスト" do
+  #   context "管理ユーザ作成" do
+  #     it "管理者は管理画面にアクセスできること" do
+  #       @admin_user = FactoryBot.create(:admin_user)
+  #       visit root_path
+  #       click_on "ユーザーログイン"
+  #       fill_in "user_email", with: @admin_user.email
+  #       fill_in "user_password", with: @admin_user.password
+  #       click_on "ログイン"
+  #       sleep 0.3
+  #       click_on "管理画面"
+  #       expect(current_path).to eq  rails_admin_path
+  #     end
+  #   end
+  
+  #   context "管理者でログインしている場合" do
+  #     before do
+  #       @admin_user = FactoryBot.create(:admin_user)
+  #       visit root_path
+  #       click_on "ユーザーログイン"
+  #       fill_in "user_email", with: @admin_user.email
+  #       fill_in "user_password", with: @admin_user.password
+  #       click_on "ログイン"
+  #       visit rails_admin_path
+  #     end
 
-      it "管理者はユーザ新規登録ができる" do
-        click_on "ユーザー",match: :first
-        click_on "新規作成"
-        fill_in "user_name", with: "みうら"
-        fill_in "user_email", with: "miura@example.com"
-        fill_in "user_password", with: "66666666"
-        click_on "_save"
-        expect(page).to have_content "miura@example.com"       
-      end
+  #     it "管理者はユーザ新規登録ができる" do
+  #       click_on "ユーザー",match: :first
+  #       click_on "新規作成"
+  #       fill_in "user_name", with: "みうら"
+  #       fill_in "user_email", with: "miura@example.com"
+  #       fill_in "user_password", with: "66666666"
+  #       click_on "_save"
+  #       expect(page).to have_content "miura@example.com"       
+  #     end
     
 
-      it "管理者はユーザの詳細画面へ行ける" do
-        @user = FactoryBot.create(:user)
-        visit user_path(id: @user.id)
-      end
+  #     it "管理者はユーザの詳細画面へ行ける" do
+  #       @user = FactoryBot.create(:user)
+  #       visit user_path(id: @user.id)
+  #     end
       
       # it "管理者ユーザーの編集画面からユーザーの編集ができる" do
       #   @user = FactoryBot.create(:user)
@@ -113,10 +114,10 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
       #   expect(page).to have_content "test_user"
       # end
       
-      it "管理者はユーザーを削除できる" do
-        click_on "ユーザー",match: :first
-        click_on "nav-link",match: :first
-      end
-    end
-  end
+    #   it "管理者はユーザーを削除できる" do
+    #     click_on "ユーザー",match: :first
+    #     click_on "nav-link",match: :first
+    #   end
+    # end
+  # end
 end
