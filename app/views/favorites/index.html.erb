@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>favorites</h1>
+<h1>お気に入り一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Image</th>
+      <th>写真</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
         <td><% favorite.photo.products.each do |product| %><%= product.price %><% end %></td>
         
 
-        <td><%= link_to'詳細', photo_path(favorite.photo.id) %></td>
+        <td><%= button_to '詳細', photo_path(favorite.photo.id),  method: :get, class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>

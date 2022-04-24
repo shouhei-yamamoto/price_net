@@ -1,3 +1,7 @@
+<div class = 'link' >
+    <%= button_to 'ラベル登録', new_label_path,  method: :get, class: "btn btn-primary" %>
+</div>
+
 <%= form_with(model: photo, local: true) do |f| %>
   <% if photo.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +17,7 @@
   
   <%#photoモデルの記載%>
   <div class="field">
-    <%= f.label :image %>
+    <%= f.label :写真 %>
     <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
     <%= f.file_field :image %>
     <%= f.hidden_field :image_cache %>
@@ -21,7 +25,7 @@
 
   <div class="content">
     <%= f.label :'写真説明' %>
-    <%= f.text_field :content %>
+    <%= f.text_field :content,  placeholder: "写真の説明を入力" %>
   </div>
   
   <%#geocoderの記載%>
@@ -57,7 +61,3 @@
     <%= f.submit '投稿' %>
   </div>
 <% end %>
-
-<div class = 'link' >
-    <%= button_to 'ラベル登録', new_label_path,  method: :get, class: "btn btn-primary" %>
-</div>

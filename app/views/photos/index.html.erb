@@ -1,4 +1,4 @@
-<h1>Photos</h1>
+<h1>写真一覧</h1>
 
 <%= form_with url: photos_path, method: :get, local: true do |form| %>
   <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: "選択してください" }) %>
@@ -15,7 +15,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="container">
     <% @photos.each do |photo| %>
       <tr>
         <td class = 'image'><%= image_tag photo.image.url %></td>
@@ -34,11 +34,11 @@
         <% end %>
         </td>
 
-        <td><%= link_to '詳細', photo %></td>
+        <td><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></td>
 
         <% if current_user.id == photo.user_id %>
-          <td><%= link_to '編集', edit_photo_path(photo) %></td>
-          <td><%= link_to '削除', photo, method: :delete %></td>
+          <td><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </td>
+          <td><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></td>
         <% end %>
       </tr>
     <% end %>

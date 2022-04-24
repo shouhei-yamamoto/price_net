@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+ html,body{
+  height: 100%;
+}
+
+
+ body{
+   background-color: #FAF0E6	;
+   /* padding: 0; */
+ }
+
+ .navi_menu {
+  height: 100%;
+  background-color: #E4FF8D	;
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+footer{
+  height: 100%;
+  background-color: #E4FF8D	;
+  height: 50px;
+  font-size: 1.5rem;
+  /* position: absolute;
+  bottom: 0;  */
+}
+
+
