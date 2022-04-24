@@ -2,10 +2,12 @@ class Photo < ApplicationRecord
   #写真投稿の設定
   mount_uploader :image, ImageUploader
   validates :image, presence: true
+  validates :content, presence: true
   
   #geocodeの設定
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  validates :address, presence: true
 
   #cocoonの設定
   has_many :products, dependent: :destroy 
