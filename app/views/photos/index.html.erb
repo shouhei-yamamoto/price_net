@@ -38,7 +38,7 @@
 
         <% if current_user.id == photo.user_id %>
           <td><%= link_to '編集', edit_photo_path(photo) %></td>
-          <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか？' } %></td>
+          <td><%= link_to '削除', photo, method: :delete %></td>
         <% end %>
       </tr>
     <% end %>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post 'photos/confirm', to: 'photos#confirm'
   
   #letter_openerのルーティング
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development? || Rails.env.test?
   
   #お気に入りのルーティング
   resources :favorites, only: [:create, :destroy, :index]
