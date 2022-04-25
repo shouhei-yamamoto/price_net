@@ -18,7 +18,7 @@
   <div class="container-fluid">
     <div class="row">
       <%#photoモデルの記載%>
-      <div class="field col-lg-4">
+      <div class="image field col-lg-4">
         <%= f.label :写真 %>
         <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
         <%= f.file_field :image %>
