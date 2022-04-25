@@ -22,6 +22,8 @@
         <td><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
         
+        <div class="d-flex flex-column bd-highlight mb-3">
+         <div class="p-2 bd-highlight">
         <td>
         <% unless photo.user_id == current_user.id %>
         
@@ -40,6 +42,9 @@
           <td><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </td>
           <td><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></td>
         <% end %>
+
+        </div>
+        </div>
       </tr>
     <% end %>
   </tbody>

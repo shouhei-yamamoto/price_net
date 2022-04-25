@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>PriceNet</title>
     <%= csrf_meta_tags %>
@@ -12,7 +13,9 @@
   </head>
 
   <body>
-    <header class ="navi_menu">
+  <div class="container-fluid">
+
+    <header class ="navi_menu row justify-content-between">
       <% if user_signed_in? %>
         <%= link_to "写真投稿", new_photo_path %>
         <%= link_to "写真一覧", photos_path %>
@@ -28,6 +31,8 @@
         <%= link_to '管理者ログイン', tops_admin_guest_sign_in_path, method: :post %>
       <% end %>
     </header>
+  
+  </div>
 
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
@@ -49,7 +54,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
   </body>
-  <footer>
+  <footer class="footer_image">
     <p>Price_Net</p>
   </footer>
+
 </html>

@@ -1,81 +1,99 @@
-<p>
-  <div class = 'image'>
-  <strong>Image:</strong>
-  <%= image_tag @photo.image.url %>
+<div class = "container">
+  <div class = "row justify-content-around">
+    <p>
+      <div class = 'image col-lg6-'>
+      
+      <%= image_tag @photo.image.url %>
+      </div>
+    </p>
+
+
+
+    <%#ここからgeocode%>
+
+    <script type="text/javascript">
+      function initMap() {
+        var test ={lat: <%= @photo.latitude %>, lng: <%= @photo.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15, 
+                  center: test
+                  });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @photo.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                    });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+
+    <script async defer
+                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+    </script>
+
+    <style type="text/css">
+      #map { height: 200px;
+            width: 70%;}
+    </style>
+
+    <!--mapの表示-->
+    <div id="map" class = "col-lg-6"></div>
+
+    <%#geocodeここまで%>
+
+    <div class = "col-lg-4">
+    <p>
+      <strong>写真説明:</strong>
+      <%= @photo.content %>
+    </p>
+    </div>
+    
+    <div class = "col-lg-4 geomap">
+    <p>
+      <% @photo.products.each do |product| %>
+        <strong>値段:</strong>
+        <%= product.price %> 円
+      <% end %>
+    </p>
+    </div>
+    
+    <div class = "col-lg-4">
+    <p>
+      <% @photo.product_urls.each do |product_url| %>
+      <strong>商品URL:</strong>
+      <%= text_url_to_link(h(product_url.price_url)).html_safe %>
+      <%#= product_url.price_url %>
+      <% end %>
+    </p>
+    </div>
+
+    <p>
+      <% @photo.labels.each do |label| %>
+        <strong>ラベル:</strong>
+        <%= label.name %><br>
+      <% end %>
+    <p>
   </div>
-</p>
+</div>
 
-<p>
-  <strong>写真説明:</strong>
-  <%= @photo.content %>
-</p>
 
-<%#ここからgeocode%>
+<br>
 
-<script type="text/javascript">
-  function initMap() {
-    var test ={lat: <%= @photo.latitude %>, lng: <%= @photo.longitude %>};
-    var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15, 
-              center: test
-              });
-    var transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+<br>
 
-    var contentString = '住所：<%= @photo.address %>';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
 
-    var marker = new google.maps.Marker({
-                  position:test,
-                  map: map,
-                  title: contentString
-                 });
-
-     marker.addListener('click', function() {
-       infowindow.open(map, marker);
-     });
-  }
-</script>
-
-<script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>
-
-<style type="text/css">
-  #map { height: 200px;
-         width: 70%;}
-</style>
-
-<!--mapの表示-->
-<div id="map"></div>
-
-<%#geocodeここまで%>
-
-<p>
-  <% @photo.products.each do |product| %>
-    <strong>値段:</strong>
-    <%= product.price %> 
-  <% end %>
-</p>
-
-<p>
-  <% @photo.product_urls.each do |product_url| %>
-  <strong>商品URL:</strong>
-  <%= text_url_to_link(h(product_url.price_url)).html_safe %>
-  <%#= product_url.price_url %>
-  <% end %>
-</p>
-
-<p>
-  <% @photo.labels.each do |label| %>
-    <strong>ラベル:</strong>
-    <%= label.name %><br>
-  <% end %>
-<p>
-
-<p>コメント一覧（ここから下の内容が重要）</p>
+<p>コメント一覧（他の方との情報共有にご利用下さい）</p>
 <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
 <div id="comments_area">
   <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
@@ -85,22 +103,7 @@
 <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
 <%= render partial: 'comments/form', locals: { comment: @comment, photo: @photo } %>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-
-<% 
-=begin
-%>
-<% unless @photo.user_id == current_user.id %>   
-  <% if @photo.favorite_users.ids.include?(current_user.id) %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
-      ), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(photo_id: @photo.id), method: :photo, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-<%
-=end
-%>
+<%= link_to '編集', edit_photo_path(@photo) %> |
 
 
 <% unless @photo.user_id == current_user.id %>
@@ -112,4 +115,4 @@
 <% end %>
 
 
-<%= link_to 'Back', photos_path %>
+<%= link_to '戻る', photos_path %>

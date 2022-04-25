@@ -15,49 +15,55 @@
     </div>
   <% end %>
   
-  <%#photoモデルの記載%>
-  <div class="field">
-    <%= f.label :写真 %>
-    <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
-  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <%#photoモデルの記載%>
+      <div class="field col-lg-4">
+        <%= f.label :写真 %>
+        <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+      </div>
 
-  <div class="content">
-    <%= f.label :'写真説明' %>
-    <%= f.text_field :content,  placeholder: "写真の説明を入力" %>
-  </div>
-  
-  <%#geocoderの記載%>
-  <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, placeholder: "住所" %>
-  </div>
-  
-  <%#cocoonの記載%>
-   <%= f.fields_for :products do |product| %>
-    <p><%= render 'product_fields', f: product %></p>
-  <% end %>
+      <div class="content col-lg-4">
+        <%= f.label :'写真説明' %>
+        <%= f.text_field :content,  placeholder: "写真の説明を入力" %>
+      </div>
+      
+      <%#geocoderの記載%>
+      <div class="field col-lg-4">
+        <%= f.label :住所 %>
+        <%= f.text_field :address, placeholder: "住所" %>
+      </div>
+    </div>
+      
+      <%#cocoonの記載%>
+      
+      <%= f.fields_for :products do |product| %>
+        <p><%= render 'product_fields', f: product %></p>
+       <% end %>
 
-  <div class = 'link' >
-    <%= link_to_add_association 'フォームを追加する', f, :products %>
-  </div>
+      <div class = 'link' >
+        <%= link_to_add_association 'フォームを追加する', f, :products %>
+      </div>
+      
+     
+      <%= f.fields_for :product_urls do |product_url| %>
+        <p><%= render 'product_url_fields', f: product_url %></p>
+      <% end %>
+     
 
-  <%= f.fields_for :product_urls do |product_url| %>
-    <p><%= render 'product_url_fields', f: product_url %></p>
-  <% end %>
+      <div class = 'link' >
+        <%= link_to_add_association 'フォームを追加する', f, :product_urls %>
+      </div>
+      
+      <%#ラベルの記載%>
+      <div class="field row">
+        <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+      </div>
 
-  
-  <div class = 'link' >
-    <%= link_to_add_association 'フォームを追加する', f, :product_urls %>
-  </div>
-  
-  <%#ラベルの記載%>
-  <div class="field">
-    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit '投稿' %>
+      <div class="actions">
+        <%= f.submit '投稿' %>
+      </div>
   </div>
 <% end %>
