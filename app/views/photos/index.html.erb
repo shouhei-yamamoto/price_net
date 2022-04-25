@@ -4,51 +4,47 @@
   <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: "選択してください" }) %>
   <%= form.submit 'ラベル検索', name: nil %>
 <% end %> 
+  
+<br>
 
-<table>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>値段</th>
-     
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody class="container">
+  <body class="container">
     <% @photos.each do |photo| %>
-      <tr>
-        <td class = 'image'><%= image_tag photo.image.url %></td>
-        <td><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></td>
-        <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
+     
+        <p class = 'image'><%= image_tag photo.image.url %></p>
+        <p><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></p>
+        <p><% photo.labels.each do |label| %><%= label.name %><% end %></p>
         
         <div class="d-flex flex-column bd-highlight mb-3">
-         <div class="p-2 bd-highlight">
-        <td>
-        <% unless photo.user_id == current_user.id %>
+          <div class="p-2 bd-highlight">
+            <p>
+              <% unless photo.user_id == current_user.id %>
+              
+                <% if photo.favorite_users.ids.include?(current_user.id) %>
+                  <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
+                  ), method: :delete, class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'お気に入りする', favorites_path(photo_id: photo.id), method: :photo, class: 'btn btn-primary' %>
+                <% end %>
+              <% end %>
+            </p>
         
-          <% if photo.favorite_users.ids.include?(current_user.id) %>
-            <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
-             ), method: :delete, class: 'btn btn-danger' %>
-          <% else %>
-            <%= link_to 'お気に入りする', favorites_path(photo_id: photo.id), method: :photo, class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
-        </td>
+          <div class = "row">
+            <p><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></p>
 
-        <td><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></td>
-
-        <% if current_user.id == photo.user_id %>
-          <td><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </td>
-          <td><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></td>
-        <% end %>
+            <% if current_user.id == photo.user_id %>
+              <p><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </p>
+              <p><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></p>
+            <% end %>
+          </div>
 
         </div>
-        </div>
-      </tr>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </body>
+
+
+
 
 <%= paginate @photos %>
 
