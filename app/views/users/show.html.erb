@@ -1,37 +1,30 @@
 <h1>マイページ</h1>
-<table>
-  <thead>
-    <tr>
-      <div class = 'image'>
-        <% if @user.image? %>
-           <%= image_tag @user.image.url %>    
-        <% end %>   
- 
-        
-      </div>
-    </tr>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-lg-4">
+      <p>
+        <div class = 'image'>
+          <% if @user.image? %>
+            <%= image_tag @user.image.url %>    
+          <% end %>          
+        </div>
+      </p>
 
-    <br>
+      <p><strong>お名前：</strong><%= @user.name  %></p>
+      <p><strong>email:</strong><%= @user.email  %></p>
+    </div>
 
-    <tr>
-      <strong>お名前：</strong>
-      <%= @user.name  %>
-    </tr>
+    <div class = "col-lg-4 show_button">
+      <% if user_signed_in? && @user == current_user || current_user.admin == true %>
+        <%= button_to "プロフィール編集", edit_user_path(@user.id),  method: :get, class:"btn btn-info" %> 
+      <% end %>
+    </div>
 
-    <br>
-
-    <tr>
-      <strong>email:</strong>
-      <%= @user.email  %>
-    </tr>
-  </thead>
-</table>
-
-<% if user_signed_in? && @user == current_user || current_user.admin == true %>
-   <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
- <% end %>
-
-<%= link_to 'お気に入り一覧', favorites_path  %>
+    <div class = "col-lg-4 show_button">
+      <%= button_to "お気に入り一覧", favorites_path(@user.id),  method: :get, class:"btn btn-info" %> 
+    </div>
+  </div>
+</div>
 
 <br>
 
