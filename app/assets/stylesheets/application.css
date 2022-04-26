@@ -116,4 +116,10 @@ footer{
   margin-right: 8px;
 }
 
-
+.field_with_errors {
+  display: contents;
+}
+/* 
+.boxContainer{
+  display: flex;
+} */

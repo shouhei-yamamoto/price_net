@@ -29,7 +29,7 @@
             <% end %>
           </p>
         
-        <div class = "row col-lg-4 row">
+        <div class = "row col-lg-4">
           <p><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></p>
 
           <% if current_user.id == photo.user_id %>
