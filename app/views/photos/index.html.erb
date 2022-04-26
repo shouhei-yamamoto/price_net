@@ -8,42 +8,39 @@
 <br>
 
 
- 
+<div class = "row">
   
-    <% @photos.each do |photo| %>
-     
-     
-        <p class = 'image col-lg-4'><%= image_tag photo.image.url %></p>
-        <p class = 'image col-lg-4'><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></p>
-        <p class = 'image col-lg-4'> <% photo.labels.each do |label| %><%= label.name %><% end %></p>
+  <% @photos.each do |photo| %>
+    
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <div class="p-2 bd-highlight">
+          <p class = 'image col-lg-4'><%= image_tag photo.image.url %></p>
+          <p class = 'image col-lg-4'><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></p>
+          <p class = 'image col-lg-4'> <% photo.labels.each do |label| %><%= label.name %><% end %></p>
         
-        <div class="d-flex flex-column bd-highlight mb-3">
-          <div class="p-2 bd-highlight">
-            <p class = "row col-lg-4">
-              <% unless photo.user_id == current_user.id %>
-              
-                <% if photo.favorite_users.ids.include?(current_user.id) %>
-                  <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
-                  ), method: :delete, class: 'btn btn-danger' %>
-                <% else %>
-                  <%= link_to 'お気に入りする', favorites_path(photo_id: photo.id), method: :photo, class: 'btn btn-primary' %>
-                <% end %>
+          <p class = "row col-lg-4">
+            <% unless photo.user_id == current_user.id %>
+              <% if photo.favorite_users.ids.include?(current_user.id) %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: Favorite.find_by(user_id: current_user.id, photo_id: photo.id).id
+                ), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'お気に入りする', favorites_path(photo_id: photo.id), method: :photo, class: 'btn btn-primary' %>
               <% end %>
-            </p>
-        
-          <div class = "row col-lg-4">
-            <p><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></p>
-
-            <% if current_user.id == photo.user_id %>
-              <p><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </p>
-              <p><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></p>
             <% end %>
-          </div>
+          </p>
+        
+        <div class = "row col-lg-4 row">
+          <p><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></p>
 
+          <% if current_user.id == photo.user_id %>
+            <p><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %> </p>
+            <p><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger"  %></p>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </body>
+    </div>
+  <% end %>
+</div>
 
 
 
