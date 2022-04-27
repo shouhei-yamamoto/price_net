@@ -5,7 +5,7 @@
 <%= form_with(model: photo, local: true) do |f| %>
   <% if photo.errors.any? %>
     <div id="error_explanation">
-      <h2>エラーが発生した為、写真が保存されませんでした:</h2>
+      <h2>エラーが発生した為、写真を保存できませんでした:</h2>
 
       <ul>
         <% photo.errors.full_messages.each do |message| %>
@@ -38,7 +38,7 @@
     </div>
       
       <%#cocoonの記載%>
-     
+      
       <%= f.fields_for :products do |product| %>
         <p><%= render 'product_fields', f: product %></p>
        <% end %>
@@ -56,7 +56,8 @@
       <div class = 'link product_form' >
         <%= link_to_add_association 'サイトURLを追加する', f, :product_urls %>
       </div>
-      </div>
+
+      <br>
       
       <%#ラベルの記載%>
       <div class="field row">
@@ -66,5 +67,5 @@
       <div class="actions">
         <%= f.submit '投稿' %>
       </div>
-  
+  </div>
 <% end %>
