@@ -211,3 +211,7 @@ footer{
   border-color: #fff #fff #a8d4ff;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
+
+.photo_new_sentence{
+  margin:0 auto;
+}
