@@ -4,5 +4,6 @@
 </div>
 
 <%= render 'form', photo: @photo %>
-
-<%= link_to '戻る', photos_path %>
+<div class = "new_photo_return">
+<%= button_to '戻る', photos_path,  method: :get, class: "btn btn-success" %>
+</div>

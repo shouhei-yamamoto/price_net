@@ -1,27 +1,29 @@
-<h1>マイページ</h1>
-<div class = "container">
-  <div class = "row">
-    <div class = "col-lg-4">
-      <p>
-        <div class = 'image'>
-          <% if @user.image? %>
-            <%= image_tag @user.image.url %>    
-          <% end %>          
-        </div>
-      </p>
+<div class = "row justify-content-center user_show_profile">
+  <h1>マイページ</h1>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-lg-4">
+        <p>
+          <div class = 'image'>
+            <% if @user.image? %>
+              <%= image_tag @user.image.url %>    
+            <% end %>          
+          </div>
+        </p>
 
-      <p><strong>お名前：</strong><%= @user.name  %></p>
-      <p><strong>email:</strong><%= @user.email  %></p>
-    </div>
+        <p><strong>お名前：</strong><%= @user.name  %></p>
+        <p><strong>email:</strong><%= @user.email  %></p>
+      </div>
 
-    <div class = "col-lg-4 show_button">
-      <% if user_signed_in? && @user == current_user || current_user.admin == true %>
-        <%= button_to "プロフィール編集", edit_user_path(@user.id),  method: :get, class:"btn btn-info" %> 
-      <% end %>
-    </div>
+      <div class = "col-lg-4 show_button">
+        <% if user_signed_in? && @user == current_user || current_user.admin == true %>
+          <%= button_to "プロフィール編集", edit_user_path(@user.id),  method: :get, class:"btn btn-info" %> 
+        <% end %>
+      </div>
 
-    <div class = "col-lg-4 show_button">
-      <%= button_to "お気に入り一覧", favorites_path(@user.id),  method: :get, class:"btn btn-info" %> 
+      <div class = "col-lg-4 show_button">
+        <%= button_to "お気に入り一覧", favorites_path(@user.id),  method: :get, class:"btn btn-info" %> 
+      </div>
     </div>
   </div>
 </div>
@@ -30,6 +32,7 @@
 
 <table>
 <h1>投稿した写真</h1>
+
   <tbody>
     <% @photos.each do |photo| %>
       <tr>

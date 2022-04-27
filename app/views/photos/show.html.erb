@@ -113,6 +113,6 @@
   <% end %>
 <% end %>
 
-<%= link_to '編集', edit_photo_path(@photo) %> |
-<%= link_to '戻る', photos_path %>
+<%= button_to '編集', edit_photo_path(@photo),  method: :get, class: "btn btn-primary" %> 
+<%= button_to '戻る', photos_path,  method: :get, class: "btn btn-success" %>
 

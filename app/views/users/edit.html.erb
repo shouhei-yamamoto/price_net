@@ -1,5 +1,8 @@
+<div class = "user_edit_heading">
 <h1>プロフィール編集</h1>
+</div>
 
+<div class = "row  justify-content-center user_edit_register">
 <%= form_with(model: @user, local: true) do |f| %>  
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -9,3 +12,4 @@
   
   <%= f.submit "更新" %>
 <% end %>
+</div>
