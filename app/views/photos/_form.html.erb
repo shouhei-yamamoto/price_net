@@ -36,17 +36,15 @@
         <%= f.text_field :address, placeholder: "販売店の住所を入力" %>
       </div>
     </div>
-  </div>
-<% end %>
       
       <%#cocoonの記載%>
-      <%= form_with(model: photo, local: true) do |f| %>
+     
       <%= f.fields_for :products do |product| %>
         <p><%= render 'product_fields', f: product %></p>
        <% end %>
 
-      <div class = 'link' >
-        <%= link_to_add_association 'フォームを追加する', f, :products %>
+      <div class = 'link product_form' >
+        <%= link_to_add_association '通販価格を追加する', f, :products %>
       </div>
       
      
@@ -55,8 +53,9 @@
       <% end %>
      
 
-      <div class = 'link' >
-        <%= link_to_add_association 'フォームを追加する', f, :product_urls %>
+      <div class = 'link product_form' >
+        <%= link_to_add_association 'サイトURLを追加する', f, :product_urls %>
+      </div>
       </div>
       
       <%#ラベルの記載%>
@@ -67,4 +66,5 @@
       <div class="actions">
         <%= f.submit '投稿' %>
       </div>
-      <% end %>
+  
+<% end %>
