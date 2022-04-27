@@ -36,9 +36,11 @@
         <%= f.text_field :address, placeholder: "販売店の住所を入力" %>
       </div>
     </div>
+  </div>
+<% end %>
       
       <%#cocoonの記載%>
-      
+      <%= form_with(model: photo, local: true) do |f| %>
       <%= f.fields_for :products do |product| %>
         <p><%= render 'product_fields', f: product %></p>
        <% end %>
@@ -65,5 +67,4 @@
       <div class="actions">
         <%= f.submit '投稿' %>
       </div>
-  </div>
-<% end %>
+      <% end %>

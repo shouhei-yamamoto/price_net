@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
     @photos = Photo.all
     @photos = Photo.all.order(created_at: "DESC")
     @photos = @photos.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
-    @photos = @photos.page(params[:page]).per(15)
+    @photos = @photos.page(params[:page]).per(20)
   end
 
 

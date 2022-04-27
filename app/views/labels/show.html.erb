@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>ラベル名:</strong>
-  <%= @label.name %>
-</p>
+<div class = "tag_show">
+<p><strong>ラベル名:</strong><%= @label.name %></p>
 
 <%= link_to '編集', edit_label_path(@label) %> |
 <%= link_to '戻る', labels_path %>
+</div>

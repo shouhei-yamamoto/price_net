@@ -119,6 +119,48 @@ footer{
 .field_with_errors {
   display: contents;
 }
+
+.tag_form{
+  text-align: center;
+  color: #505050;/*文字色*/
+  padding: 0.5em;/*文字周りの余白*/
+  display: inline-block;/*おまじない*/
+  line-height: 1.3;/*行高*/
+  background: #dbebf8;/*背景色*/
+  vertical-align: middle;
+  border-radius: 25px 0px 0px 25px;/*左側の角を丸く*/
+}
+
+.tag_form:before {
+  content: '●';
+  color: white;
+  margin-right: 8px;
+}
+
+.tag_form_under{
+  margin: 0 auto;
+}
+
+.tag_show{
+  text-align: center;
+  color: #505050;/*文字色*/
+  padding: 0.5em;/*文字周りの余白*/
+  /* display: inline-block;おまじない */
+  line-height: 1.3;/*行高*/
+  background: #dbebf8;/*背景色*/
+  vertical-align: middle;
+  border-radius: 25px 0px 0px 25px;/*左側の角を丸く*/
+}
+
+.tag_show:before {
+  content: '●';
+  color: white;
+  margin-right: 8px;
+}
+
+.tag_new_sentence{
+  text-align: center;
+}
 /* 
 .boxContainer{
   display: flex;

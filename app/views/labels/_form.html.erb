@@ -11,14 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :ラベル名 %>
-    <%= form.text_field :name, placeholder: "登録したいラベル名を入力" %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class = "row justify-content-center">
+  <div class = "tag_form">
+    <div class="field">
+      <%= form.label :ラベル名 %>
+      <%= form.text_field :name, placeholder: "登録したいラベル名を入力" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
 <% end %>
+  </div>
 
- <%= button_to 'ラベル一覧', labels_path,  method: :get, class: "btn btn-primary" %>
+  <%= button_to 'ラベル一覧', labels_path,  method: :get, class: "btn btn-primary" %>
+  <%= link_to '戻る', labels_path %>
+</div>
