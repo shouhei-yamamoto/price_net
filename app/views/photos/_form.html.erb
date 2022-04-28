@@ -1,73 +1,73 @@
 <div class = "justify-content-center row">
-<div class = 'label_register' >
-    <%= button_to 'ラベル登録', new_label_path,  method: :get, class: "btn btn-primary" %>
-</div>
+  <div class = 'label_register' >
+      <%= button_to 'ラベル登録', new_label_path,  method: :get, class: "btn btn-primary" %>
+  </div>
 
-<%= form_with(model: photo, local: true) do |f| %>
-  <% if photo.errors.any? %>
-    <div id="error_explanation">
-      <h2>エラーが発生した為、写真を保存できませんでした:</h2>
+  <%= form_with(model: photo, local: true) do |f| %>
+    <% if photo.errors.any? %>
+      <div id="error_explanation">
+        <h2>エラーが発生した為、写真を保存できませんでした:</h2>
 
-      <ul>
-        <% photo.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <ul>
+          <% photo.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="container-fluid photo_post">
+      <div class="row">
+        <%#photoモデルの記載%>
+        <div class="image field col-lg-4">
+          <%= f.label :写真 %>
+          <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+
+        <div class="content col-lg-4">
+          <%= f.label :'写真説明' %>
+          <%= f.text_field :content,  placeholder: "写真の説明を入力" %>
+        </div>
+        
+        <%#geocoderの記載%>
+        <div class="field col-lg-4">
+          <%= f.label :住所 %>
+          <%= f.text_field :address, placeholder: "販売店の住所を入力" %>
+        </div>
+      </div>
+        
+        <%#cocoonの記載%>
+        
+        <%= f.fields_for :products do |product| %>
+          <p><%= render 'product_fields', f: product %></p>
         <% end %>
-      </ul>
+
+        <div class = 'link product_form' >
+          <%= link_to_add_association '通販価格を追加する', f, :products %>
+        </div>
+        
+      
+        <%= f.fields_for :product_urls do |product_url| %>
+          <p><%= render 'product_url_fields', f: product_url %></p>
+        <% end %>
+      
+
+        <div class = 'link product_form' >
+          <%= link_to_add_association 'サイトURLを追加する', f, :product_urls %>
+        </div>
+
+        <br>
+        
+        <%#ラベルの記載%>
+        <div class="field row">
+          <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit '投稿' %>
+        </div>
     </div>
   <% end %>
-  
-  <div class="container-fluid photo_post">
-    <div class="row">
-      <%#photoモデルの記載%>
-      <div class="image field col-lg-4">
-        <%= f.label :写真 %>
-        <%= image_tag(photo.image.url) if photo.image && photo.image.url %>
-        <%= f.file_field :image %>
-        <%= f.hidden_field :image_cache %>
-      </div>
-
-      <div class="content col-lg-4">
-        <%= f.label :'写真説明' %>
-        <%= f.text_field :content,  placeholder: "写真の説明を入力" %>
-      </div>
-      
-      <%#geocoderの記載%>
-      <div class="field col-lg-4">
-        <%= f.label :住所 %>
-        <%= f.text_field :address, placeholder: "販売店の住所を入力" %>
-      </div>
-    </div>
-      
-      <%#cocoonの記載%>
-      
-      <%= f.fields_for :products do |product| %>
-        <p><%= render 'product_fields', f: product %></p>
-       <% end %>
-
-      <div class = 'link product_form' >
-        <%= link_to_add_association '通販価格を追加する', f, :products %>
-      </div>
-      
-     
-      <%= f.fields_for :product_urls do |product_url| %>
-        <p><%= render 'product_url_fields', f: product_url %></p>
-      <% end %>
-     
-
-      <div class = 'link product_form' >
-        <%= link_to_add_association 'サイトURLを追加する', f, :product_urls %>
-      </div>
-
-      <br>
-      
-      <%#ラベルの記載%>
-      <div class="field row">
-        <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit '投稿' %>
-      </div>
-  </div>
-<% end %>
 </div>

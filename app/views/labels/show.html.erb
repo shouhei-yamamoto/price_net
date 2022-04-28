@@ -1,11 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class = "tag_show">
-<p><strong>ラベル名:</strong><%= @label.name %></p>
-
-
-<%= button_to '編集', edit_label_path(@label),  method: :get, class: "btn btn-secondary" %> 
-<%= button_to '戻る', labels_path,  method: :get, class: "btn btn-success" %>
-
-
+  <p><strong>ラベル名:</strong><%= @label.name %></p>
+  <%= button_to '編集', edit_label_path(@label),  method: :get, class: "btn btn-secondary" %> 
+  <%= button_to '戻る', labels_path,  method: :get, class: "btn btn-success" %>
 </div>
