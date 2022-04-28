@@ -226,7 +226,7 @@ footer{
   /* bottom: 50%; */
   position: relative; /* 今の位置を基準 */
   bottom: 10px; /* 上から10px */
-  left: 130px; /* 左から20px */
+  left: 90px; /* 左から20px */
 }
 
 .new_photo_return{
