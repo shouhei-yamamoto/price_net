@@ -223,6 +223,10 @@ footer{
 .label_register{
   width: 60%;
   margin:0 auto;
+  /* bottom: 50%; */
+  position: relative; /* 今の位置を基準 */
+  bottom: 10px; /* 上から10px */
+  left: 20px; /* 左から20px */
 }
 
 .new_photo_return{
