@@ -19,7 +19,7 @@
     <div class="d-flex flex-column bd-highlight mb-3">
       <div class="p-2 bd-highlight">
           <p class = 'image col-lg-4'><%= image_tag photo.image.url %></p>
-          <p class = 'image col-lg-4'><% photo.products.each do |product| %><%= product.price %> <%= "円" %><% end %></p>
+          <p class = 'image col-lg-4'><% photo.products.each do |product| %><%= product.price %>円<% end %></p>
           <p class = 'image col-lg-4'> <% photo.labels.each do |label| %><%= label.name %><% end %></p>
         
           <p class = "row col-lg-12">
