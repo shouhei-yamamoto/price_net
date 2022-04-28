@@ -15,3 +15,9 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      label:
+        name: ラベル名
+      photo:
+        image: 写真
+        content: 写真説明
+        address: 住所

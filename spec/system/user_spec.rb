@@ -58,8 +58,17 @@ RSpec.describe 'ユーザ登録・ログイン・ログアウト機能・管理�
         click_on "ログアウト"
         expect(page).to have_content "ログアウトしました。"
       end
-    end     
-  end
+
+      it "プロフィールの編集ができる事" do
+        visit edit_user_path(id: @user.id)
+        
+        fill_in 'user_name', with: "いのう"
+        click_on "更新"
+        expect(page).to have_content "いのう"
+      end
+    end 
+  end    
+  
   
   # 優先順位高ではないが、卒業後再度テストをするため残しておく。
   # describe "管理画面のテスト" do

@@ -1,53 +1,49 @@
-<h1>マイページ</h1>
-<table>
-  <thead>
-    <tr>
-      <div class = 'image'>
-        <% if @user.image? %>
-           <%= image_tag @user.image.url %>    
-        <% end %>   
- 
-        
+<div class = "row justify-content-center user_show_profile">
+  <h1>マイページ</h1>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-lg-4">
+        <p>
+          <div class = 'image'>
+            <% if @user.image? %>
+              <%= image_tag @user.image.url %>    
+            <% end %>          
+          </div>
+        </p>
+
+        <p><strong>お名前：</strong><%= @user.name  %></p>
+        <p><strong>email:</strong><%= @user.email  %></p>
       </div>
-    </tr>
 
-    <br>
+      <div class = "col-lg-4 show_button">
+        <% if user_signed_in? && @user == current_user || current_user.admin == true %>
+          <%= button_to "プロフィール編集", edit_user_path(@user.id),  method: :get, class:"btn btn-info" %> 
+        <% end %>
+      </div>
 
-    <tr>
-      <strong>お名前：</strong>
-      <%= @user.name  %>
-    </tr>
-
-    <br>
-
-    <tr>
-      <strong>email:</strong>
-      <%= @user.email  %>
-    </tr>
-  </thead>
-</table>
-
-<% if user_signed_in? && @user == current_user || current_user.admin == true %>
-   <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
- <% end %>
-
-<%= link_to 'お気に入り一覧', favorites_path  %>
+      <div class = "col-lg-4 show_button">
+        <%= button_to "お気に入り一覧", favorites_path(@user.id),  method: :get, class:"btn btn-info" %> 
+      </div>
+    </div>
+  </div>
+</div>
 
 <br>
 
 <table>
 <h1>投稿した写真</h1>
+
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
         <td class = 'image'><%= image_tag photo.image.url %></td>
         <td><% photo.products.each do |product| %><%= product.price %><% end %></td>
         <td><% photo.labels.each do |label| %><%= label.name %><% end %></td>
-        <td><%= link_to '詳細', photo %></td>
+        <td><%= button_to '詳細', photo_path(photo.id),  method: :get, class: "btn btn-primary" %></td>
 
         <% if current_user.id == photo.user_id %>
-          <td><%= link_to '編集', edit_photo_path(photo) %></td>
-          <td><%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %></td>
+          <td><%= button_to "編集", edit_photo_path(photo.id),  method: :get, class:"btn btn-success" %></td>
+          <td><%= button_to '削除', photo_path(photo.id), method: :delete, class: "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>

@@ -1,6 +1,9 @@
-<h1>Editing Photo</h1>
+<div class = "photo_edit_heading">
+<h1>写真編集</h1>
+</div>
 
 <%= render 'form', photo: @photo %>
 
-<%= link_to 'Show', @photo %> |
-<%= link_to 'Back', photos_path %>
+<div class = "photo_edit_return">
+<%= button_to '戻る', photos_path,  method: :get, class: "btn btn-success" %>
+</div>

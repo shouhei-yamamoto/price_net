@@ -25,15 +25,14 @@ end
   email: "normal@example.jp",
   password: "11111111",
   admin: "false",
-  # confirmed_at: Time.now
   )
 
 # photo完成
 
 user = User.first
 5.times do |n|
-    Photo.create!(image:File.open("./public/adpDSC_5649-e1499482537656-499x750.jpg"),
-                content: "aaaa",
+    Photo.create!(image:File.open("./public/DSC_1370.JPG"),
+                content: "便利な釣りの本です。他の通販サイトより安い所を見つけました",
                 address: "東京都港区芝公園４丁目２−８",
                 user_id: user.id
                 )
@@ -52,12 +51,12 @@ end
 
 # Product 完成
 5.times do |n|
-  Product.create!(photo_id: photo.id, price: 555)
+  Product.create!(photo_id: photo.id, price:2200 )
 end
 
 # Product_url 完成
 5.times do |n|
-  ProductUrl.create!(photo_id: photo.id, price_url: "https://diveintocode.jp/corporate")
+  ProductUrl.create!(photo_id: photo.id, price_url: "https://www.amazon.co.jp/%E3%81%95%E3%81%8B%E3%81%AA%E3%83%BB%E9%87%A3%E3%82%8A%E6%A4%9C%E7%B4%A2-%E3%80%8C%E7%89%B9%E5%BE%B4-%E4%BB%95%E6%8E%9B%E3%81%91-%E3%81%95%E3%81%B0%E3%81%8D%E6%96%B9%E3%80%8D%E3%81%8C%E5%88%86%E3%81%8B%E3%82%8B672%E9%A0%81%E8%B6%85%E5%9B%B3%E9%91%91-%E3%81%A4%E3%82%8A%E4%BA%BA%E7%A4%BE/dp/4864473447/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=22MBK8MZKIRGD&keywords=%E9%AD%9A+%E9%87%A3%E3%82%8A%E6%A4%9C%E7%B4%A2&qid=1650341781&sprefix=%E9%AD%9A+%E9%87%A3%E3%82%8A%E6%A4%9C%E7%B4%A2%2Caps%2C188&sr=8-1")
 end
 
 
